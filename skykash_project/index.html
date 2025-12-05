@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skykash - Smart Flight Booking</title>
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <body>
+  <!-- Login Popup Modal -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-container">
+    <button type="button" class="close-modal" id="closeModal">&times;</button>
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-logo">
+          <img src="./favicon.png" alt="Skykash Logo" />
+          <h2>Skykash</h2>
+        </div>
+        <h3>Welcome Back!</h3>
+        <p>Log in to continue</p>
+      </div>
+
+      <form id="loginForm" class="modal-form">
+        <div class="form-group">
+          <label for="modalEmail">Email Address</label>
+          <input type="email" id="modalEmail" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="modalPassword">Password</label>
+          <input type="password" id="modalPassword" placeholder="Enter your password" required>
+        </div>
+
+        <div class="form-options">
+          <label class="checkbox-label">
+            <input type="checkbox" id="modalRemember">
+            <span>Remember me</span>
+          </label>
+          <a href="#" class="forgot-link">Forgot Password?</a>
+        </div>
+        
+        <button type="submit" class="modal-btn-primary">Log In</button>
+        
+        <div class="modal-divider">
+          <span>or</span>
+        </div>
+
+        <p class="modal-footer-text">Don't have an account? <a href="../register/register.html" class="signup-link">Sign Up</a></p>
+      </form>
+    </div>
+  </div>
+</div>
+
+    <div class="particles" id="particles"></div>
+
+    <div id="page">
+        <nav class="navbar">
+            <h1>
+                <div class="logo-icon"><img src="./favicon.png" alt="Skykash Logo" width="50px" height="50px"></div>
+                Skykash
+            </h1>
+            <div class="nav-links">
+                <a href="./index.html" class="nav">Home</a>
+                <a href="../register/register.html" class="nav">Register</a>
+                <a href="../login/login.html" class="nav">Login</a>
+                <a href="#Menu" onclick="openSidebar()" class="nav menu-btn">Menu</a>
+            </div>
+        </nav>
+
+        <div class="home_page">
+            <h2>WELCOME TO SKYKASH!</h2>
+            <h1>Know when to book flights,<br>without overpaying.</h1>
+            <div class="button-group">
+                <button class="btn btn-primary" onclick="window.location.href='../booking/booking.html'">Book Ticket</button>
+                <button class="btn btn-secondary" onclick="window.location.href='../prediction/prediction.html'">Price Predict</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>How Price Tracking Works</h2>
+            <div class="features">
+                <div class="feature-box">
+                    <div class="feature-icon">📍</div>
+                    <h3>Set up price tracking</h3>
+                    <p>Track flight prices for specific trip dates, or any dates if your plans are flexible</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">📊</div>
+                    <h3>Monitor price changes</h3>
+                    <p>Check back here for price changes on saved routes or flights to get the best deals</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Get notified</h3>
+                    <p>Get alerts when prices for flights you're tracking change, so you don't miss out on price drops</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about">
+            <h2>About Us</h2>
+            <p>
+                Skykash is an innovative platform that combines airplane ticket booking with predictive analytics for fare forecasting. Unlike traditional booking systems, Skykash leverages machine learning algorithms to analyze pricing trends and suggest the most cost-effective options to users. The platform ensures a seamless user experience with an intuitive interface, secure booking process, and reliable fare insights. Designed to make air travel more affordable and convenient, Skykash stands as a modern solution for travelers seeking efficiency, transparency, and smarter planning. ✈️✨
+            </p>
+        </div>
+    </div>
+
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+        <a href="#">My Account</a>
+        <a href="#">Explore</a>
+        <a href="#">Booking Status</a>
+        <a href="#">Booking History</a>
+        <a href="#">Help</a>
+        <a href="#">Log Out</a>
+    </div>
+
+    <div id="overlay" onclick="closeSidebar()"></div>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="section-header">
+      <h2>Get In Touch</h2>
+      <p>Have questions? We'd love to hear from you</p>
+    </div>
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="info-card">
+          <div class="info-icon">📧</div>
+          <h4>Email</h4>
+          <p>support@skykash.com</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">📞</div>
+          <h4>Phone</h4>
+          <p>+91 1800-000-0000</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <h4>Address</h4>
+          <p>Noida, Uttar Pradesh, India</p>
+        </div>
+      </div>
+      <form class="contact-form">
+        <div class="form-group">
+          <input type="text" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Your Message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="./favicon.png" alt="Skykash Logo" />
+          <h3>Skykash</h3>
+        </div>
+        <p>&copy; 2025 Skykash. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skykash | Price Prediction</title>
+  <link rel="shortcut icon" href="./favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="./prediction.css">
+</head>
+<body>
+  
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="./favicon.png" alt="Skykash Logo" />
+        <h1>Skykash</h1>
+      </div>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="./prediction.html" class="nav-link active">Predict Price</a>
+        <a href="../booking/booking.html" class="nav-link">Book Ticket</a>
+      </div>
+      <div class="nav-buttons">
+        <a href="../login/login.html" class="btn-login">Login</a>
+        <a href="../register/register.html" class="btn-register">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Flight Price Prediction</h1>
+      <p>Get accurate flight price predictions and find the best time to book</p>
+    </div>
+  </section>
+
+  <!-- Prediction Form Section -->
+  <section class="prediction-section">
+    <div class="container">
+      <div class="prediction-card">
+        <div class="card-header">
+          <h2>Enter Flight Details</h2>
+          <p>Fill in the information below to get price predictions</p>
+        </div>
+
+        <form id="predictionForm" class="prediction-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="departure">Departure City</label>
+              <select id="departure" required>
+                <option value="">Select City</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Pune">Pune</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="arrival">Arrival City</label>
+              <select id="arrival" required>
+                <option value="">Select City</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Pune">Pune</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="departureDate">Departure Date</label>
+              <input type="date" id="departureDate" required>
+            </div>
+
+            <div class="form-group">
+              <label for="returnDate">Return Date (Optional)</label>
+              <input type="date" id="returnDate">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="airline">Preferred Airline</label>
+              <select id="airline" required>
+                <option value="">Select Airline</option>
+                <option value="Air India">Air India</option>
+                <option value="IndiGo">IndiGo</option>
+                <option value="SpiceJet">SpiceJet</option>
+                <option value="Vistara">Vistara</option>
+                <option value="GoAir">GoAir</option>
+                <option value="AirAsia">AirAsia India</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="class">Travel Class</label>
+              <select id="class" required>
+                <option value="">Select Class</option>
+                <option value="Economy">Economy</option>
+                <option value="Premium Economy">Premium Economy</option>
+                <option value="Business">Business</option>
+                <option value="First Class">First Class</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="passengers">Number of Passengers</label>
+              <input type="number" id="passengers" min="1" max="9" value="1" required>
+            </div>
+
+            <div class="form-group">
+              <label for="stops">Stops</label>
+              <select id="stops" required>
+                <option value="">Select Stops</option>
+                <option value="Non-stop">Non-stop</option>
+                <option value="1 Stop">1 Stop</option>
+                <option value="2+ Stops">2+ Stops</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-predict">
+            <span class="btn-text">Predict Price</span>
+            <span class="btn-icon">✈️</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Results Section -->
+      <div class="results-card" id="resultsCard" style="display: none;">
+        <div class="results-header">
+          <h2>Price Prediction Results</h2>
+          <button class="btn-close-results" id="closeResults">&times;</button>
+        </div>
+
+        <div class="price-display">
+          <div class="price-label">Predicted Price</div>
+          <div class="price-amount" id="predictedPrice">₹0</div>
+          <div class="price-range">
+            <span>Min: <strong id="minPrice">₹0</strong></span>
+            <span>Max: <strong id="maxPrice">₹0</strong></span>
+          </div>
+        </div>
+
+        <div class="prediction-chart">
+          <h3>Price Trends (Next 30 Days)</h3>
+          <canvas id="priceChart"></canvas>
+        </div>
+
+        <div class="recommendations">
+          <h3>Recommendations</h3>
+          <div class="recommendation-item">
+            <span class="icon">💡</span>
+            <div>
+              <h4>Best Time to Book</h4>
+              <p id="bestTime">Loading...</p>
+            </div>
+          </div>
+          <div class="recommendation-item">
+            <span class="icon">📊</span>
+            <div>
+              <h4>Price Trend</h4>
+              <p id="priceTrend">Loading...</p>
+            </div>
+          </div>
+          <div class="recommendation-item">
+            <span class="icon">⚡</span>
+            <div>
+              <h4>Booking Tip</h4>
+              <p id="bookingTip">Loading...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="btn-book">Book This Flight</button>
+          <button class="btn-alert">Set Price Alert</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <h2>How Our Prediction Works</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🤖</div>
+          <h3>AI-Powered</h3>
+          <p>Advanced machine learning algorithms analyze millions of data points</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📈</div>
+          <h3>Historical Data</h3>
+          <p>Years of flight price history to identify patterns and trends</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⏱️</div>
+          <h3>Real-Time</h3>
+          <p>Updated predictions based on current market conditions</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🎯</div>
+          <h3>Accurate</h3>
+          <p>95% accuracy rate in price predictions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="./favicon.png" alt="Skykash Logo" />
+          <h3>Skykash</h3>
+        </div>
+        <p>&copy; 2025 Skykash. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./prediction.js"></script>
+</body>
+</html>

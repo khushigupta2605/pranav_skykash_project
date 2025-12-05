@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skykash | Ticket Booking</title>
+  <link rel="stylesheet" href="./booking.css" />
+</head>
+<body>
+    <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logos">
+        <img src="./favicon.png" alt="Skykash Logo"> </img>
+        <h1>Skykash</h1>
+      </div>
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../prediction/prediction.html" class="nav-link">Predict Price</a>
+        <a href="../booking/booking.html" class="nav-link active">Book Ticket</a>
+      </div>
+      <div class="nav-buttons">
+        <a href="../login/login.html" class="btn-login">Login</a>
+        <a href="../register/register.html" class="btn-register">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-container">
+    <!-- Booking Form Section -->
+    <div class="container">
+      <div class="logo"><img src="./favicon.png" alt="skykash logo" width="50px" height="50px">Skykash</div> 
+      <h2>Book Your Flight</h2>
+      <form>
+        <div class="journey-type-group">
+          <label>
+            <input type="radio" name="journeyType" value="oneway" checked onclick="toggleReturn(false)">
+            One Way
+          </label>
+          <label>
+            <input type="radio" name="journeyType" value="roundtrip" onclick="toggleReturn(true)">
+            Round Trip
+          </label>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>From</label>
+            <input type="text" id="from" placeholder="Origin" required />
+          </div>
+          <div class="input-group">
+            <label>To</label>
+            <input type="text" id="to" placeholder="Destination" required />
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>Departure Date</label>
+            <input type="date" id="departureDate" required />
+          </div>
+          <div class="input-group">
+            <label>Return Date</label>
+            <input type="date" id="returnDate" disabled />
+          </div>
+        </div>
+
+        <div class="input-row">
+          <div class="input-group">
+            <label>Passengers</label>
+            <select id="passengers" required>
+              <option value="">Select passengers</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4+</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Class</label>
+            <select id="class" required>
+              <option value="">Select class</option>
+              <option>Economy</option>
+              <option>Business</option>
+              <option>First</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit">Search Flights</button>
+      </form>
+    </div>
+
+    <!-- Destinations Section -->
+    <div class="destinations-section">
+      <div class="section-header">
+        <h3>Popular Destinations</h3>
+        <a href="#" class="view-all">View All →</a>
+      </div>
+
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&h=400&fit=crop" alt="Dubai">
+        <div class="card-tag">Popular</div>
+        <div class="card-overlay">
+          <div class="card-title">Dubai</div>
+          <div class="card-subtitle">United Arab Emirates</div>
+        </div>
+      </div>
+
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop" alt="Maldives">
+        <div class="card-tag">Beach</div>
+        <div class="card-overlay">
+          <div class="card-title">Maldives</div>
+          <div class="card-subtitle">Tropical Paradise</div>
+        </div>
+      </div>
+
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=600&h=400&fit=crop" alt="Switzerland">
+        <div class="card-tag">Mountain</div>
+        <div class="card-overlay">
+          <div class="card-title">Switzerland</div>
+          <div class="card-subtitle">Alpine Adventure</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleReturn(isRoundTrip) {
+      document.getElementById('returnDate').disabled = !isRoundTrip;
+      if (!isRoundTrip) {
+        document.getElementById('returnDate').value = '';
+      }
+    }
+  </script>
+</body>
+</html>
